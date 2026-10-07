@@ -32,3 +32,37 @@
 # even be correct. Perhaps, worse, they might not follow the instructions
 # exactly as given.
 # ----------------------------------------------------------------------
+import random
+
+print("Welcome to The Number Guesser game!")
+
+while True:
+    number = random.randint(1, 1000)
+    attempts = 0
+
+    while True:
+        response = input(
+            "Guess a number between 1 and 1000, or type 'bye' or 'exit' to quit: "
+        ).strip()
+
+        if response.lower() in ("bye", "exit"):
+            print("Till next time!")
+            raise SystemExit
+
+        if not response.isdecimal():
+            print("Please enter a valid number")
+            continue
+
+        guess = int(response)
+        attempts += 1
+
+        if guess > number:
+            print("Too high!")
+        elif guess < number:
+            print("Too low!")
+        else:
+            print(
+                f"Congratulations! You guessed the number! "
+                f"It took {attempts} attempts."
+            )
+            break

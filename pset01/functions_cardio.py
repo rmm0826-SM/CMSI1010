@@ -17,102 +17,66 @@
 # comments, prior to submission. You can, and should, add your own
 # comments, but please remove all the comments that are here now.
 # ----------------------------------------------------------------------
+import statistics
 
-
-def print_square(n):
-    """
-    Print a square of asterisks with side length n.
-
-    For example, if n is 3, the output should be:
-    ***
-    ***
-    ***
-    """
-    # replace the pass statement with your code
-    pass
+def print_square(n, char="*"):
+    for i in range(1, n + 1):
+        print(char * n)
 
 
 def is_odd(n):
-    """
-    Return True if n is odd, False otherwise.
-    """
-    # replace the pass statement with your code
-    pass
+    if n % 2 == 0:
+        return False
+    else:
+        return True
 
 
 def median_of_three(a, b, c):
-    """
-    Return the median of three numbers a, b, and c.
-    """
-    # replace the pass statement with your code
-    pass
+    median = statistics.median([a, b, c])
+    return median
 
 
 def is_palindrome(s):
-    """
-    Return True if the string s is a palindrome, False otherwise.
-
-    A palindrome reads the same forwards and backwards. You can
-    implement it as a simple check to see if s is equal to its
-    reversal.
-    """
-    # replace the pass statement with your code
-    pass
+    reversed_s = s[::-1]
+    return s == reversed_s
 
 
 def factorial(n):
-    """
-    Return the factorial of n.
-
-    The factorial of a non-negative integer n is the product of all
-    positive integers less than or equal to n. Please implement this
-    function with a for loop.
-    """
-    # replace the pass statement with your code
-    pass
+    result = 1
+    for i in range(2, n + 1):
+        result *= i
+    return result
 
 
 def count_of_latin_vowels(s):
-    """
-    Return the number of vowels in the string s.
-
-    The vowels are 'a', 'e', 'i', 'o', and 'u'. You can implement this
-    function using a for loop to iterate through the string.
-    """
-    # replace the pass statement with your code
-    pass
+    count = 0
+    for char in s:
+        if char.lower() in "aeiou":
+            count += 1
+    return count 
 
 
 def at_beginning_or_end(part, whole):
-    """
-    Return True if the part is a prefix or a suffix of whole.
-    """
-    # replace the pass statement with your code
-    pass
+    return whole.startswith(part) or whole.endswith(part)
 
 
 def longest_string(strings):
-    """
-    Return the longest string from a list of strings.
-
-    If there are multiple strings with the same maximum length, return
-    the first one encountered.
-    """
-    # replace the pass statement with your code
-    pass
+    longest = strings[0]
+    for string in strings:
+        if len(string) > len(longest):
+            longest = string
+    return longest
 
 
 def collatz(n):
-    """
-    Return the Collatz sequence starting from n.
-
-    The Collatz sequence is defined as follows:
-    - If n is even, the next term is n / 2.
-    - If n is odd, the next term is 3n + 1.
-    - The sequence ends when it reaches 1.
-    """
-    # replace the pass statement with your code
-    pass
+    sequence = [n]
+    while n != 1:
+        if n % 2 == 0:
+            n = n // 2
+        else:
+            n = 3 * n + 1
+        sequence.append(n)
+    return sequence
 
 
 def test_print_square():

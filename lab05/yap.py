@@ -14,12 +14,16 @@ template = """
     verb preposition the coach’s
     adjective color noun that was
     adverb adjective before
+    """,
+    """
+    Oh, no! The adjective adjective adjective noun
+    verb dispite our noun adjective adjective verb efforts!
     """
 
 
 def random_sentence():
     sentence = []
-    for token in template.split():
+    for token in random.choice(templates).split():
         if token in words:
             sentence.append(random.choice(words[token]))
         else:
