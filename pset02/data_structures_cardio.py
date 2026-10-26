@@ -1,139 +1,89 @@
-# ----------------------------------------------------------------------
-# This is the file data_structures_cardio.py
-#
-# The intent is to give you practice with tuples, lists, sets, and
-# dictionaries.
-#
-# Complete the functions below.
-#
-# Each function has a docstring that describes what it should do, but
-# please see the unit tests at the bottom of the file for more
-# specific examples of what each function should return. To run
-# the tests, you can use the command
-#
-#     python3 -m unittest data_structures_cardio.py
-#
-# (or python depending on your system).
-#
-# Remove this comment, and all of the "replace the pass statement..."
-# comments, prior to submission. You can, and should, add your own
-# comments, but please remove all the comments that are here now.
-# ----------------------------------------------------------------------
 
 
-def third_element(t):
-    """
-    If t is a tuple with at least three elements, return the third
-    element. If t is not a tuple or has fewer than three elements,
-    raise an IndexError.
-    """
-    # replace the pass statement with your code
-    pass
+
+def third_element(t): 
+   if not isinstance(t, tuple):
+       raise TypeError("Input must be a tuple")
+   if len(t) < 3:
+       raise IndexError("Tuple must have at least three elements")
+   return t[2]
+   
 
 
 def reverse_pair(t):
-    """
-    if t is a tuple of two elements, return a new tuple with the
-    elements in reverse order. If t is not a tuple, raise a TypeError.
-    If t is a tuple with more or fewer than two elements, raise a
-    ValueError.
-    """
-    # replace the pass statement with your code
-    pass
+    if not isinstance(t, tuple):
+        raise TypeError("Input must be a tuple")
+    if len(t) != 2:
+        raise ValueError("Tuple must have exactly two elements")
+    return (t[1], t[0])
+
 
 
 def middle_element_of_list(a):
-    """
-    If a is a list with an odd number of elements, return the
-    middle element. If a is a list with an even number of elements,
-    return the leftmost middle element. If a is a list with no
-    elements, raise an IndexError. If a is not a list, raise a
-    TypeError.
-    """
-    # replace the pass statement with your code
-    pass
+    if not isinstance(a, list):
+        raise TypeError("Input must be a list")
+    if len(a) == 0:
+        raise IndexError("List must not be empty")
+    middle_index = (len(a) - 1) // 2
+    return a[middle_index]
+ 
 
 
 def unique_elements(a):
-    """
-    Return a set of unique elements from the input list a.
-    If a is not a list, raise a TypeError.
-    """
-    # replace the pass statement with your code
-    pass
+    if not isinstance(a, list):
+        raise TypeError("Input must be a list")
+    return set(a)   
 
 
 def contains_duplicates(a):
-    """
-    Return True if the input list a contains any duplicate elements,
-    and False otherwise. If a is not a list, raise a TypeError.
-    """
-    # replace the pass statement with your code
-    pass
-
+    if not isinstance(a, list):
+        raise TypeError("Input must be a list")
+    return len(a) != len(set(a))
 
 def is_superset(a, b):
-    """
-    Return True if set a is a superset of set b, and False otherwise.
-    If either a or b is not a set, raise a TypeError.
-    """
-    # replace the pass statement with your code
-    pass
+    if not isinstance(a, set) or not isinstance(b, set):
+        raise TypeError("Both inputs must be sets")
+    return a.issuperset(b)
 
 
 def is_subset(a, b):
-    """
-    Return True if set a is a subset of set b, and False otherwise.
-    If either a or b is not a set, raise a TypeError.
-    """
-    # replace the pass statement with your code
-    pass
+    if not isinstance(a, set) or not isinstance(b, set):
+        raise TypeError("Both inputs must be sets")
+    return a.issubset(b)
 
 
 def is_disjoint(a, b):
-    """
-    Return True if sets a and b are disjoint (i.e., have no elements in common),
-    and False otherwise. If either a or b is not a set, raise a TypeError.
-    """
-    # replace the pass statement with your code
-    pass
+    if not isinstance(a, set) or not isinstance(b, set):
+        raise TypeError("Both inputs must be sets")
+    return a.isdisjoint(b)
 
 
 def most_frequent_value_or_values(d):
-    """
-    Return the value or values that appear most frequently in the
-    dictionary d. If there are multiple values with the same maximum
-    frequency, return them as a set. If d is empty, return the empty
-    set (because there are no elements to count). If d is not a
-    dictionary, raise a TypeError.
-    """
-    # replace the pass statement with your code
-    pass
+    if not isinstance(d, dict):
+        raise TypeError("Input must be a dictionary")
+    if not d:
+        return set()
+    frequency = {}
+    for value in d.values():
+        frequency[value] = frequency.get(value, 0) + 1
+    max_freq = max(frequency.values())
+    return {value for value, freq in frequency.items() if freq == max_freq}
 
 
 def key_is_in_both_dictionaries(d1, d2, key):
-    """
-    Return True if the key is present in both dictionaries d1 and d2,
-    and False otherwise. If either d1 or d2 is not a dictionary,
-    raise a TypeError.
-    """
-    # replace the pass statement with your code
-    pass
+    if not isinstance(d1, dict) or not isinstance(d2, dict):
+        raise TypeError("Both inputs must be dictionaries")
+    return key in d1 and key in d2
 
 
 def word_frequencies(s):
-    """
-    Return a dictionary with the frequency of each word in the string s.
-    The keys of the dictionary are the words, and the values are the
-    number of times each word appears in the string.
-
-    A word is defined as a sequence of characters separated by spaces.
-    You can implement this function using the split method.
-
-    If s is not a string, raise a TypeError.
-    """
-    # replace the pass statement with your code
-    pass
+    if not isinstance(s, str):
+        raise TypeError("Input must be a string")
+    words = s.split()
+    frequency = {}
+    for word in words:
+        frequency[word] = frequency.get(word, 0) + 1
+    return frequency
 
 
 def _assert_raises(exception_type, func, *args):

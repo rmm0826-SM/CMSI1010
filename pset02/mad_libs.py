@@ -41,3 +41,92 @@
 #
 #   2. The possible "yes" answers should be stored in a set.
 # ----------------------------------------------------------------------
+import random
+
+templates = [
+    {
+        "text": "The :color :animal :action over the :adjective :plant.",
+        "author": "Anonymous"
+    },
+    {
+        "text": "Once upon a time, a :adjective :animal lived in a :place.",
+        "author": "Anonymous"
+    },
+    {
+        "text": "In the :adjective :place, a :animal decided to :action.",
+        "author": "Anonymous"
+    },
+    {
+        "text": "The :adjective :animal was very :emotion when it saw the :adjective :object.",
+        "author": "Anonymous"
+    },
+    {
+        "text": "A :adjective :animal and a :adjective :animal went on a :adjective :adventure to find the :adjective :object.",
+        "author": "Anonymous"
+    },
+    {
+        "text": "The :adjective :animal was very :emotion when it saw the :adjective :object.",
+        "author": "Anonymous"
+    },
+    {
+        "text": "A :adjective :animal and a :adjective :animal went on a :adjective :adventure to find the :adjective :object.",
+        "author": "Anonymous"
+    },
+    {
+        "text": "The :adjective :animal was very :emotion when it saw the :adjective :object.",
+        "author": "Anonymous"
+    },
+    {
+        "text": "A :adjective :animal and a :adjective :animal went on a :adjective :adventure to find the :adjective :object.",
+        "author": "Anonymous"
+    },
+    {
+        "text": "The :adjective :animal was very :emotion when it saw the :adjective :object.",
+        "author": "Anonymous"
+    }
+]
+yes_answers = {"yes", "y", "sí", "si", "oui", "ja", "hai", "da"}
+
+
+def get_user_input(prompt):
+    while True:
+        user_input = input(prompt).strip()
+        if 1 <= len(user_input) <= 30:
+            return user_input
+        else:
+            print("Input must be between 1 and 30 characters long. Please try again.")
+def fill_in_template(template):
+    filled_template = template["text"]
+    placeholders = [word for word in filled_template.split() if word.startswith(":")]
+    user_inputs = {}
+    for placeholder in placeholders:
+        prompt = f"Please enter a {placeholder[1:]}: "
+        user_input = get_user_input(prompt)
+        user_inputs[placeholder] = user_input
+    for placeholder, user_input in user_inputs.items():
+        filled_template = filled_template.replace(placeholder, user_input)
+    return filled_template
+def main():
+    while True:
+        template = random.choice(templates)
+        filled_template = fill_in_template(template)
+        print("\n" + filled_template)
+        print(f"\nTemplate by: {template['author']}\n")
+        play_again = input("Do you want to play again? (yes/no): ").strip().lower()
+        if play_again not in yes_answers:
+            print("Thanks for playing!")
+            break
+def play_once():
+    template = random.choice(templates)
+    filled_template = fill_in_template(template)
+    print("\n" + filled_template)
+    print(f"\nTemplate by: {template['author']}\n")
+def main():
+    while True:
+        play_once()
+        play_again = input("Do you want to play again? (yes/no): ").strip().lower()
+        if play_again not in yes_answers:
+            print("Thanks for playing!")
+            break
+if __name__ == "__main__":
+    main()
